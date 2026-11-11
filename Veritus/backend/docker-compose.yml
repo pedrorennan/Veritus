@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: veritus-db
+    environment:
+      POSTGRES_DB: veritus
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
