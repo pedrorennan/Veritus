@@ -1,4 +1,4 @@
-package model;
+package com.example.Veritus.model;
 
 import jakarta.persistence.*;
 
