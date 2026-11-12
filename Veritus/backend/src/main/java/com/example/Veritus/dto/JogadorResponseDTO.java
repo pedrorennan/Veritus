@@ -9,6 +9,4 @@ import lombok.Setter;
 public class JogadorResponseDTO {
     String nome;
     String email;
-
-
 }

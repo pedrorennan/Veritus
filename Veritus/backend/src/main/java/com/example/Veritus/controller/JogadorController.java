@@ -4,27 +4,38 @@ import com.example.Veritus.dto.JogadorRequestDTO;
 import com.example.Veritus.dto.JogadorResponseDTO;
 import com.example.Veritus.mapper.JogadorMapper;
 import com.example.Veritus.model.Jogador;
+import com.example.Veritus.repository.JogadorRepository;
 import com.example.Veritus.service.JogadorService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/perfil")
 public class JogadorController {
 
     private final JogadorService jogadorService;
+    private final JogadorRepository jogadorRepository;
 
-    public JogadorController(JogadorService jogadorService) {
+    public JogadorController(JogadorService jogadorService, JogadorRepository jogadorRepository) {
         this.jogadorService = jogadorService;
+        this.jogadorRepository = jogadorRepository;
     }
 
     @PostMapping("/registrar")
-    public JogadorResponseDTO login(@Valid @RequestBody JogadorRequestDTO dto) {
+    public ResponseEntity<?> login(@Valid @RequestBody JogadorRequestDTO dto) {
+        if (jogadorRepository.existsByEmail(dto.email())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                    Map.of(
+                            "Erro",
+                            "Email já cadastrado"
+                    )
+            );
+        }
         Jogador jogador = jogadorService.criar(dto);
-        return JogadorMapper.toJogadorResponse(jogador);
+        return ResponseEntity.status(HttpStatus.CREATED).body(jogador.getNome());
     }
 
 }
