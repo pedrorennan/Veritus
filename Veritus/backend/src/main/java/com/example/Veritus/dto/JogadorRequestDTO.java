@@ -7,5 +7,8 @@ public record JogadorRequestDTO (
         String nome,
 
         @NotBlank
-        String email
+        String email,
+
+        @NotBlank
+        String senha
 ) {}
