@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 
-import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
+import java.util.List;
 
 @Getter
 @Setter
