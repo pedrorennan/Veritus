@@ -1,5 +1,6 @@
 package com.example.Veritus.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record JogadorRequestDTO (
@@ -7,6 +8,7 @@ public record JogadorRequestDTO (
         String nome,
 
         @NotBlank
+        @Email
         String email,
 
         @NotBlank

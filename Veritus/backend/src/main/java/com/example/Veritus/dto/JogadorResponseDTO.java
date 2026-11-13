@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JogadorResponseDTO {
+    Long id;
     String nome;
     String email;
 }
