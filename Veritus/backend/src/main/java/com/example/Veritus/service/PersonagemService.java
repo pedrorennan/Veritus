@@ -30,8 +30,12 @@ public class PersonagemService {
         Jogador jogador = jogadorRepository.getReferenceById(jogadorSessao.getId());
 
         personagem.setNomeJogador(jogador);
+        personagem.setNivel(dto.nivel());
+        personagem.setNomePersonagem(dto.nomePersonagem());
+        personagem.setPerfil(dto.perfil());
+        personagem.setVocacao(dto.vocacao());
 
-
+        Personagem salvo = jogadorRepository.save(personagem);
 
         return
     }
