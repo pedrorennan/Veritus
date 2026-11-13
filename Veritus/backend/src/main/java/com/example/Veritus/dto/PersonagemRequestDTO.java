@@ -15,9 +15,7 @@ public record PersonagemRequestDTO (
         String vocacao,
 
         @NotBlank
-        String perfil,
+        String perfil
 
-        @NotBlank
-        Atributos atributos
 ) {
 }

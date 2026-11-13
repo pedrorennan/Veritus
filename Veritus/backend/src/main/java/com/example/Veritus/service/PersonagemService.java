@@ -35,8 +35,8 @@ public class PersonagemService {
         personagem.setPerfil(dto.perfil());
         personagem.setVocacao(dto.vocacao());
 
-        Personagem salvo = jogadorRepository.save(personagem);
+        Personagem salvo = personagemRepository.save(personagem);
 
-        return
+        return salvo;
     }
 }
