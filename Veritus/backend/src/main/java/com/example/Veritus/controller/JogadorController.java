@@ -3,7 +3,6 @@ package com.example.Veritus.controller;
 import com.example.Veritus.dto.JogadorRequestDTO;
 import com.example.Veritus.dto.JogadorResponseDTO;
 import com.example.Veritus.dto.LoginDTO;
-import com.example.Veritus.mapper.JogadorMapper;
 import com.example.Veritus.model.Jogador;
 import com.example.Veritus.repository.JogadorRepository;
 import com.example.Veritus.service.JogadorService;
@@ -18,11 +17,9 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/jogador")
 public class JogadorController {
 
     private final JogadorService jogadorService;
@@ -53,5 +50,8 @@ public class JogadorController {
         return ResponseEntity.ok(jogadorService.login(dto, request, response));
     }
 
-
+    @GetMapping("")
+    public ResponseEntity<List<JogadorResponseDTO>> listar() {
+        return ResponseEntity.ok(jogadorService.listar());
+    }
 }

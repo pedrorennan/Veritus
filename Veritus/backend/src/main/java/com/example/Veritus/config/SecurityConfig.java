@@ -42,7 +42,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/registrar", "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/jogador/registrar", "/jogador/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable())

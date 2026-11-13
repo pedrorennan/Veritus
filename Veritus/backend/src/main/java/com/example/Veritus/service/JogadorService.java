@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import com.example.Veritus.mapper.JogadorMapper;
 
 @Service
 public class JogadorService {
@@ -74,5 +75,17 @@ public class JogadorService {
         return "Login realizado com sucesso!";
     }
 
+    public List<JogadorResponseDTO> listar() {
+        List<Jogador> jogadores = jogadorRepository.findAll();
+
+        if (jogadores.isEmpty()) {
+            throw new RuntimeException("Lista de jogadores vazia");
+        }
+
+        return jogadores.stream()
+                .map(JogadorMapper::toJogadorResponse)
+                .toList();
+
+    }
 
 }
